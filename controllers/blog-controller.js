@@ -16,7 +16,7 @@ export const getAllBlogs = async (req, res, next) => {
 };
 
 export const addBlog = async (req, res, next) => {
-  const { title, description, image, user } = req.body;
+  const { title, description, image, category, date, user } = req.body;
 
   let existingUser;
   try {
@@ -34,6 +34,8 @@ export const addBlog = async (req, res, next) => {
     title,
     description,
     image,
+    category,
+    date,
     user,
   });
   try {
