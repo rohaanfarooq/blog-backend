@@ -148,7 +148,7 @@ export const getByUserId = async (req, res, next) => {
 export const getheadlines = async (req, res, next) => {
   let headline;
   try {
-    headline = await Blog.find().limit(3).sort({ _id: -1 });
+    headline = await Blog.find().limit(3).sort({ _id: -1 }).populate("user");
   } catch (error) {
     return console.log(error);
   }
@@ -172,7 +172,7 @@ export const gettrending = async (req, res, next) => {
 export const getlistings = async (req, res, next) => {
   let listings;
   try {
-    listings = await Blog.find().limit(3).skip(5).sort({ _id: -1 });
+    listings = await Blog.find().limit(6).skip(6).sort({ _id: -1 });
   } catch (error) {
     return console.log(error);
   }
@@ -184,7 +184,7 @@ export const getlistings = async (req, res, next) => {
 export const getpicks = async (req, res, next) => {
   let picks;
   try {
-    picks = await Blog.find().limit(3).skip(8).sort({ _id: -1 });
+    picks = await Blog.find().limit(3).skip(12).sort({ _id: -1 });
   } catch (error) {
     return console.log(error);
   }
