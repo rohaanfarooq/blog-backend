@@ -114,3 +114,82 @@ export const getByUserId = async (req, res, next) => {
   }
   return res.status(200).json({ user: userBlogs });
 };
+
+// export const getrandomblogs = async (req, res, next) => {
+//   let randomblogs = [];
+//   const randno = req.params.randno;
+//   try {
+//     for (let i = 0; i < randno; i++) {
+//       randomblogs.push(await Blog.findOne().skip(1).populate("user"));
+//     }
+//   } catch (error) {
+//     return console.log(error);
+//   }
+//   if (!randomblogs) {
+//     return res.status(404).json({ message: "No Blogs Found" });
+//   }
+//   return res.status(200).json({ randomblogs });
+// };
+// export const getrandomblogs = async (req, res, next) => {
+//   let randomblogs;
+//   const randno = req.params.randno;
+//   Blog.aggregate([{ $sample: { size: 1 } }]);
+//   // try {
+//   //   randomblogs = Blog.aggregate([{ $sample: { size: randno } }]);
+//   // } catch (error) {
+//   //   return console.log(error);
+//   // }
+//   // if (!randomblogs) {
+//   //   return res.status(404).json({ message: "No Blogs Found" });
+//   // }
+//   // return res.status(200).json({ randomblogs });
+// };
+
+export const getheadlines = async (req, res, next) => {
+  let headline;
+  try {
+    headline = await Blog.find().limit(3).sort({ _id: -1 });
+  } catch (error) {
+    return console.log(error);
+  }
+  if (!headline) {
+    return res.status(404).json({ message: "No Blogsasss Found" });
+  }
+  return res.status(200).json({ headline });
+};
+export const gettrending = async (req, res, next) => {
+  let trending;
+  try {
+    trending = await Blog.find().limit(3).skip(3).sort({ _id: -1 });
+  } catch (error) {
+    return console.log(error);
+  }
+  if (!trending) {
+    return res.status(404).json({ message: "No Blogsasss Found" });
+  }
+  return res.status(200).json({ trending });
+};
+export const getlistings = async (req, res, next) => {
+  let listings;
+  try {
+    listings = await Blog.find().limit(3).skip(5).sort({ _id: -1 });
+  } catch (error) {
+    return console.log(error);
+  }
+  if (!listings) {
+    return res.status(404).json({ message: "No Blogsasss Found" });
+  }
+  return res.status(200).json({ listings });
+};
+export const getpicks = async (req, res, next) => {
+  let picks;
+  try {
+    picks = await Blog.find().limit(3).skip(8).sort({ _id: -1 });
+  } catch (error) {
+    return console.log(error);
+  }
+  if (!picks) {
+    return res.status(404).json({ message: "No Blogsasss Found" });
+  }
+  return res.status(200).json({ picks });
+};
