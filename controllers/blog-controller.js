@@ -75,7 +75,7 @@ export const getByID = async (req, res, next) => {
   const blogId = req.params.id;
   let blog;
   try {
-    blog = await Blog.findById(blogId);
+    blog = await Blog.findById(blogId).populate("user");
   } catch (error) {
     return console.log(error);
   }
@@ -157,6 +157,7 @@ export const getheadlines = async (req, res, next) => {
   }
   return res.status(200).json({ headline });
 };
+
 export const gettrending = async (req, res, next) => {
   let trending;
   try {
@@ -169,6 +170,7 @@ export const gettrending = async (req, res, next) => {
   }
   return res.status(200).json({ trending });
 };
+
 export const getlistings = async (req, res, next) => {
   let listings;
   try {
@@ -181,6 +183,7 @@ export const getlistings = async (req, res, next) => {
   }
   return res.status(200).json({ listings });
 };
+
 export const getpicks = async (req, res, next) => {
   let picks;
   try {
